@@ -6,3 +6,8 @@ Neste projeto estou utilizando:
 - Json-server
 - Styled Components
 - React Contexts
+
+## Para rodar na sua máquina:
+
+- npm start
+- npm run json-server
