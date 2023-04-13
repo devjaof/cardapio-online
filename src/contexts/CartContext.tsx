@@ -8,23 +8,15 @@ interface Item extends ItemData {
   subtotal: number;
 }
 
-interface RemoveItemProps {
-  id: number;
-  item: string;
-}
-
-interface UpdateCartProps {
-  id: number;
-  item: string;
-  newQuantity: number;
-}
-
 interface CartContextProps {
   cart: Item[];
 
   addItem: (item: ItemData) => void;
-  // removeItem: ({ id, item }: RemoveItemProps) => void;
-  // updateCart: ({ id, item, newQuantity }: UpdateCartProps) => void;
+  removeItem: (item: Item) => void;
+  incrementItem: (item: Item) => void;
+  decrementItem: (item: Item) => void;
+  updateItemQuantity: (item: Item, newQuantity: number) => void;
+  confirmOrder: () => void;
 }
 
 interface CartProviderProps {
@@ -45,7 +37,7 @@ export function CartProvider({ children }: CartProviderProps) {
           const quantity = mapItem.quantity + 1;
           const subtotal = mapItem.price * quantity;
 
-          return { ...item, quantity, subtotal};
+          return { ...mapItem, quantity, subtotal};
         }
         return mapItem;
       })
@@ -62,7 +54,52 @@ export function CartProvider({ children }: CartProviderProps) {
     setCart(newCart);
   }
 
-  return <CartContext.Provider value={{ cart, addItem }}>
+  function updateItemQuantity(item: Item, newQuantity: number): void {
+    if (newQuantity <= 0) return;
+
+    const itemFound = cart.find((i) => i.type === item.type && i.id === item.id);
+    if (!itemFound) return;
+
+    const newCart = cart.map((mapItem) => {
+      if (mapItem.id === itemFound.id && mapItem.type === itemFound.type) {
+        const quantity = newQuantity;
+        const subtotal = mapItem.price * newQuantity;
+
+        return { ...mapItem, quantity, subtotal};
+      }
+      return mapItem;
+    })
+
+    setCart(newCart);
+  }
+
+  function removeItem(item: Item): void {
+    const newCart = cart.filter((i) => !(i.id === item.id && i.type === item.type));
+
+    setCart(newCart);
+  }
+
+  function incrementItem(item: Item): void {
+    updateItemQuantity(item, item.quantity + 1);
+  }
+
+  function decrementItem(item: Item): void {
+    updateItemQuantity(item, item.quantity - 1);
+  }
+
+  function confirmOrder() {
+    return;
+  }
+
+  return <CartContext.Provider value={{ 
+    cart, 
+    addItem, 
+    removeItem,
+    updateItemQuantity,
+    incrementItem,
+    decrementItem,
+    confirmOrder
+  }}>
     {children}
   </CartContext.Provider>
 

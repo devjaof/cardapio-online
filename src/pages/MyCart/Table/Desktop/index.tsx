@@ -5,7 +5,7 @@ import { Container } from "./styles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export function TableDesktop() {
-  const { cart } = useCart();
+  const { cart, removeItem, incrementItem, decrementItem } = useCart();
 
   return (
     <Container>
@@ -32,13 +32,13 @@ export function TableDesktop() {
                 </td>
                 <td>
                   <div>
-                    <button type="button" onClick={() => console.log('decrement')}>
+                    <button type="button" onClick={() => decrementItem(item)}>
                       <FontAwesomeIcon icon={faMinusCircle} size="xl" />
                     </button>
 
                     <span>{`${item.quantity}`.padStart(2, '0')}</span>
 
-                    <button type="button" onClick={() => console.log('increment')}>
+                    <button type="button" onClick={() => incrementItem(item)}>
                       <FontAwesomeIcon icon={faPlusCircle} size="xl" />
                     </button>
                   </div>
@@ -47,7 +47,7 @@ export function TableDesktop() {
                   <h5>{formatCurrency(item.subtotal)}</h5>
                 </td>
                 <td>
-                  <button type="button" onClick={() => console.log('delete')}>
+                  <button type="button" onClick={() => removeItem(item)}>
                     <FontAwesomeIcon icon={faTrash} size="xl" />
                   </button>
                 </td>
