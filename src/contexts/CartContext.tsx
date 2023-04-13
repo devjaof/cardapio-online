@@ -32,3 +32,18 @@ interface CartProviderProps {
   children: ReactNode;
 }
 
+export function CartProvider({ children }: CartProviderProps) {
+  const [cart, setCart] = useState<Item[]>([]);
+
+  function addItem(item: ItemData): void {
+    const newItem = {...item, quantity: 1, subtotal: item.price};
+    const newCart = [...cart, newItem];
+
+    setCart(newCart);
+  }
+
+  return <CartContext.Provider value={{ cart, addItem }}>
+    {children}
+  </CartContext.Provider>
+
+}
