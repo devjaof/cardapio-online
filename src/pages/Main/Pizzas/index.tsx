@@ -1,22 +1,10 @@
-import { useEffect, useState } from 'react';
-
-import { Head } from '../../../components/Head'
-import { Product } from '../../../components/Product'
-import { PageTitle } from '../../../components/PageTitle'
-
-import { getPizzas } from '../../../services/api'
-import { ItemData } from '../../../interfaces/ItemData';
+import { Head } from '../../../components/Head';
+import { PageTitle } from '../../../components/PageTitle';
+import { Product } from '../../../components/Product';
+import { useItem } from '../../../hooks/useItem';
 
 export default function Pizzas() {
-  const [pizzas, setPizzas] = useState<ItemData[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      const pizzaRequest = await getPizzas();
-
-      setPizzas(pizzaRequest.data);
-    })()
-  }, [])
+const { pizzas } = useItem();
 
   return (
     <>

@@ -1,22 +1,10 @@
-import { useEffect, useState } from 'react'
-
 import { Head } from '../../../components/Head'
 import { Product } from '../../../components/Product'
 import { PageTitle } from '../../../components/PageTitle'
-
-import { getBurgers } from '../../../services/api'
-import { ItemData } from '../../../interfaces/ItemData'
+import { useItem } from '../../../hooks/useItem';
 
 export default function Burgers() {
-  const [burgers, setBurgers] = useState<ItemData[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      const burgerRequest = await getBurgers();
-
-      setBurgers(burgerRequest.data);
-    })();
-  }, [])
+  const { burgers } = useItem();
 
   return (
     <>
