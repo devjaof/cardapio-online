@@ -8,8 +8,6 @@ export const GlobalStyle = createGlobalStyle`
     background: ${(props) => props.theme.colors.gray900};
     color: ${(props) => props.theme.colors.white};
     font-family: ${(props) => props.theme.fontFamily.sans};
-    max-width: 100%;
-    overflow-y: hidden;
   }
   ul {
     margin-block-start: 0;

@@ -1,3 +1,4 @@
+import { darken } from "polished";
 import styled from "styled-components";
 
 export const Container = styled.main`
@@ -75,6 +76,12 @@ export const Container = styled.main`
     &:nth-child(3),
     &:nth-child(4) {
       width: 11rem;
+
+      button {
+        &:hover {
+          color: ${darken(0.1, '#ffffff')};
+        }
+      }
     }
 
     &:last-child {

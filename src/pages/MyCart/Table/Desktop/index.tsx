@@ -3,6 +3,7 @@ import { formatCurrency } from "../../../../helpers/formatCurrency";
 import { useCart } from "../../../../hooks/useCart";
 import { Container } from "./styles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ConfirmOrder } from "../../../../components/ConfirmOrder";
 
 export function TableDesktop() {
   const { cart, removeItem, incrementItem, decrementItem } = useCart();
@@ -56,6 +57,7 @@ export function TableDesktop() {
           })}
         </tbody>
       </table>
+      <ConfirmOrder />
     </Container>
   )
 }
