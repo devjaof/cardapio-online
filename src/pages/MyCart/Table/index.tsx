@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useCart } from "../../../hooks/useCart"
 import { TableDesktop } from "./Desktop";
 import { TableMobile } from "./Mobile";
+import { Link } from "react-router-dom";
+import { Container } from "./styles";
 
 export function Table() {
   const [windowWidth, setWindowWidth] = useState(document.documentElement.clientWidth);
@@ -22,7 +24,12 @@ export function Table() {
   }, [])
 
   if (!cart.length) {
-    return <h1>Nenhum pedido ainda por aqui...</h1>
+    return (
+      <Container>
+        <h1>Nenhum pedido ainda por aqui...</h1>
+        <Link to='/'>Peça já</Link>
+      </Container>
+    )
   }
 
   return windowWidth > 768 ? <TableDesktop/> : <TableMobile />
