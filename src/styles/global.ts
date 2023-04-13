@@ -8,6 +8,24 @@ export const GlobalStyle = createGlobalStyle`
     background: ${(props) => props.theme.colors.gray900};
     color: ${(props) => props.theme.colors.white};
     font-family: ${(props) => props.theme.fontFamily.sans};
-    padding: 1rem;
+  }
+  ul {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+  }
+  ul, li {
+    list-style: none;
+  }
+  a {
+    text-decoration: none;
+  }
+  button {
+    border: none;
+    background: none;
+    color: ${({theme}) => theme.colors.white};
+    cursor: pointer;
   }
 `

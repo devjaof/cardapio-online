@@ -1,15 +1,19 @@
-import { Container } from './styles'
+import { MainContainer, Logo } from './styles'
+
+import { Outlet } from 'react-router-dom';
+import { Sidebar } from '../../components/Sidebar'
+
+import logoExample from './logoExample.png';
 
 export default function Main() {
   return (
-    <Container>
-      <img
-        src='https://devsamurai-materials.s3.amazonaws.com/templates/avatar-gradient-dark.svg'
-        height='256'
-        alt='Dev Samurai'
-      />
-      <h1>Fala Samurai!</h1>
-      <p>Esse é o template typescript básico da Dev Samurai para React.</p>
-    </Container>
+    <MainContainer>
+      <Sidebar />
+
+      <section>
+        <Logo src={logoExample} alt="logomarca de exemplo" title="logomarca de exemplo"/>
+        <Outlet />
+      </section>
+    </MainContainer>
   )
 }
