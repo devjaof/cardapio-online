@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled(Link)`
-  position: absolute;
+  position: fixed;
   right: 1.5rem;
   bottom: 0.5rem;
 
@@ -28,7 +28,8 @@ export const Container = styled(Link)`
   }
 
   @media screen and (max-width: 720px) {
-    top: 0.5rem;
-    bottom: initial;
+    right: initial;
+    left: 1rem;
+    bottom: 6rem;
   }
 `;
