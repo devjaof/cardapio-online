@@ -1,5 +1,5 @@
 import { MainContainer, Logo } from './styles'
-import logoExample from './logoExample.png';
+import logoExample from '../../assets/logoExample.png'
 
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from '../../components/Sidebar'
