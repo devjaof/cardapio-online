@@ -5,6 +5,8 @@ import { GlobalStyle } from './styles/global'
 import { Normalize } from 'styled-normalize'
 import { ItemProvider } from './contexts/ItemContext'
 import { CartProvider } from './contexts/CartContext'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
 
@@ -16,6 +18,7 @@ export default function App() {
             <AppRoutes />
             <GlobalStyle />
             <Normalize />
+            <ToastContainer/>
           </CartProvider>
         </ItemProvider>
       </Theme>

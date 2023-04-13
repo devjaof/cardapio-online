@@ -1,5 +1,7 @@
+import { toast } from "react-toastify";
 import { ItemData } from "../interfaces/ItemData";
 import { ReactNode, useState, createContext } from "react";
+import { itemEmoji } from "../helpers/itemEmoji";
 
 interface Item extends ItemData {
   quantity: number;
@@ -49,15 +51,15 @@ export function CartProvider({ children }: CartProviderProps) {
       })
 
       setCart(newCart);
-      console.log('carrinho de compras atualizado:: ', newCart);
+      toast.success(`Outro(a) ${item.type} foi adicionado(a) ao carrinho ${itemEmoji(item.type)}`);
       return;
     }
 
     const newItem = {...item, quantity: 1, subtotal: item.price};
     const newCart = [...cart, newItem];
 
+    toast.success(`Um(a) ${item.type} foi adicionado(a) ao carrinho ${itemEmoji(item.type)}`);
     setCart(newCart);
-    console.log('carrinho de compras atualizado:: ', newCart);
   }
 
   return <CartContext.Provider value={{ cart, addItem }}>
